@@ -94,9 +94,9 @@ def convert_to_pencil_sketch(frame):
                             if(sobel1[i,j]>sobel1[i+1, j+1] and sobel1[i,j]>sobel1[i-1,j-1]):
                                 if(sobel1[i,j]>threshold):
                                     canny1[i,j]=255
-    # for i in range(height):
-    #     for j in range(width):            #for black pen on white backdrop
-    #         canny1[i][j]=255-canny1[i][j]
+    for i in range(height):
+        for j in range(width):            #for black pen on white backdrop
+            canny1[i][j]=255-canny1[i][j]
     return canny1
 
 cap=cv2.VideoCapture(0)
