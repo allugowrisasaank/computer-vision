@@ -97,6 +97,18 @@ def convert_to_pencil_sketch(frame):
     for i in range(height):
         for j in range(width):            #for black pen on white backdrop
             canny1[i][j]=255-canny1[i][j]
+    #the following loops make the black lines thicker
+    for i in range(height):
+        for j in range(width):
+            if canny1[i][j]<100:
+                if i==0:
+                    if j!=0:
+                        canny1[i][j-1]=canny1[i][j]
+                else:
+                    if j==0:
+                        canny1[i-1][j]=canny1[i-1][j+1]=canny1[i][j]
+                    else:
+                        canny1[i][j-1]=canny1[i-1][j-1]=canny1[i-1][j]=canny1[i][j]
     return canny1
 
 cap=cv2.VideoCapture(0)
